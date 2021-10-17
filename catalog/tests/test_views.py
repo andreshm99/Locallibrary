@@ -134,6 +134,26 @@ class LoanedBookInstancesByUserListViewTest(TestCase):
                 self.assertEqual(resp.context['user'], bookitem.borrower)
                 self.assertEqual('o', bookitem.status)
 
+    def test_pages_paginated_to_ten(self):
+
+        # Change all books to be on loan.
+        # This should make 15 test user ones.
+        for copy in BookInstance.objects.all():
+            copy.status = 'o'
+            copy.save()
+
+        login = self.client.login(username='testuser1', password='1X<ISRUkw+tuK')
+        response = self.client.get(reverse('my-borrowed'))
+
+        # Check our user is logged in
+        self.assertEqual(str(response.context['user']), 'testuser1')
+        # Check that we got a response "success"
+        self.assertEqual(response.status_code, 200)
+
+        # Confirm that only 10 items are displayed due to pagination
+        # (if pagination not enabled, there would be 15 returned)
+        self.assertEqual(len(response.context['bookinstance_list']), 10)
+        
     def test_pages_ordered_by_due_date(self):
 
         #Change all books to be on loan
@@ -288,6 +308,7 @@ class AuthorCreateViewTest(TestCase):
         login = self.client.login(username='testuser1', password='profesordb')
         response = self.client.get(reverse('author-create'))
         self.assertEqual(response.status_code, 403)
+    
     def test_logged_in_with_permission(self):
         login = self.client.login(username='testuser2', password='alumnodb')
         response = self.client.get(reverse('author-create'))
