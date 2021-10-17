@@ -35,7 +35,7 @@ DEBUG = bool( os.environ.get('DJANGO_DEBUG', True) )
 
 ALLOWED_HOSTS = [
     '0.0.0.0'
-    'the-yogify.herokuapp.com',
+    'gentle-crag-85853.herokuapp.com/ ',
     '127.0.0.1'
 ]
 
