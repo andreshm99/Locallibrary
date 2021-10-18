@@ -315,3 +315,8 @@ class AuthorCreateViewTest(TestCase):
                                     {'first_name': 'Andres', 'last_name': 'Hernandez'})
         self.assertEqual(response.status_code, 302)
         self.assertTrue(response.url.startswith('/catalog/author/'))
+    
+    def test_forbidden_if_logged_in_but_not_correct_permission(self):
+        login = self.client.login(username='testuser1', password='profesordb')
+        response = self.client.get(reverse('author-create'))
+        self.assertEqual(response.status_code, 403)
