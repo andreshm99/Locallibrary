@@ -19,10 +19,11 @@ class RenewBookForm(forms.Form):
             raise ValidationError(
                 _('Invalid date - renewal more than 4 weeks ahead'))
 
-                
+
         # Remember to always return the cleaned data.
         return data
 
+    '''
     def renew_book_librarian(request, pk):
         book_inst=get_object_or_404(BookInstance, pk = pk)
 
@@ -47,3 +48,4 @@ class RenewBookForm(forms.Form):
             form = RenewBookForm(initial={'renewal_date': proposed_renewal_date,})
 
         return render(request, 'catalog/book_renew_librarian.html', {'form': form, 'bookinst':book_inst})
+        '''
