@@ -265,7 +265,7 @@ class RenewBookInstancesViewTest(TestCase):
         self.assertFormError(resp, 'form', 'renewal_date', 'Invalid date - renewal more than 4 weeks ahead')
 
     def test_forbidden_if_logged_in_but_not_correct_permission(self):
-        login = self.client.login(username='testuser2', password='12345')
+        login = self.client.login(username='testuser1', password='12345')
         response = self.client.get(reverse('author-create'))
         self.assertEqual(response.status_code, 403)
 
