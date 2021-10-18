@@ -69,10 +69,9 @@ class Book(models.Model):
         return reverse('book-detail', args=[str(self.id)])
 
     def display_genre(self):
-        """
-        Creates a string for the Genre. This is required to display genre in Admin.
-        """
+        """Creates a string for the Genre. This is required to display genre in Admin."""
         return ', '.join([ genre.name for genre in self.genre.all()[:3] ])
+    
     display_genre.short_description = 'Genre'
 
 
@@ -92,7 +91,6 @@ class BookInstance(models.Model):
         ('a', 'Available'),
         ('r', 'Reserved'),
     )
-
 
     status = models.CharField(
         max_length=1,
@@ -116,7 +114,7 @@ class BookInstance(models.Model):
 
     def __str__(self):
         """String for representing the Model object."""
-        return f'{self.id} ({self.book.title})'
+        return '{0} ({1})'.format(self.id, self.book.title)
 
 
 class Author(models.Model):
