@@ -34,8 +34,8 @@ class Book(models.Model):
     title = models.CharField(max_length=200)
 
     class Meta:
-            ordering = ['title']
-            
+        ordering = ['title']
+
     # Foreign Key used because book can only have one author,
     # but authors can have multiple books
     # Author as a string rather than object because it hasn't
@@ -69,8 +69,10 @@ class Book(models.Model):
         return reverse('book-detail', args=[str(self.id)])
 
     def display_genre(self):
-        """Creates a string for the Genre. This is required to display genre in Admin."""
-        return ', '.join([ genre.name for genre in self.genre.all()[:3] ])
+        """Creates a string for the Genre. This is required
+        to display genre in Admin."""
+        return ','.join([genre.name for genre in self.genre.all()[:3]])
+    
     display_genre.short_description = 'Genre'
 
 
@@ -91,7 +93,6 @@ class BookInstance(models.Model):
         ('r', 'Reserved'),
     )
 
-
     status = models.CharField(
         max_length=1,
         choices=LOAN_STATUS,
@@ -100,7 +101,8 @@ class BookInstance(models.Model):
         help_text='Book availability',
     )
 
-    borrower = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
+    borrower = models.ForeignKey(
+        User, on_delete=models.SET_NULL, null=True, blank=True)
 
     @property
     def is_overdue(self):
@@ -114,7 +116,7 @@ class BookInstance(models.Model):
 
     def __str__(self):
         """String for representing the Model object."""
-        return f'{self.id} ({self.book.title})'
+        return f'{self.id}, ({self.book.title})'
 
 
 class Author(models.Model):

@@ -8,7 +8,8 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
-import dj_database_url  #import para que base de datos sea postgres
+import dj_database_url
+# import para que base de datos sea postgres
 import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -19,21 +20,22 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-#SECRET_KEY = 'django-insecure-4m+hw21i3%8y0o+yv-q)&-bjghm5=&-vwe#xc3y%iwq_z1+$'
+# SECRET_KEY = 'django-insecure-4m+hw21i3%8y0o+yv-q)
+# &-bjghm5=&-vwe#xc3y%iwq_z1+$'
 
 # SECURITY WARNING: keep the secret key used in production secret!
 # SECRET_KEY = 'cg#p$g+j9tax!#a3cup@1$8obt2_+&k3q+pmu)5%asj6yjpkag'
-import os
-SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'cg#p$g+j9tax!#a3cup@1$8obt2_+&k3q+pmu)5%asj6yjpkag')
-
-# SECURITY WARNING: don't run with debug turned on in production!
-#DEBUG = True
+SECRET_KEY = os.environ.get(
+    'DJANGO_SECRET_KEY', 'cg#p$g+j9tax!#a3cup@1$8obt2_+&k3q+pmu)5%asj6yjpkag')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = True
-DEBUG = bool( os.environ.get('DJANGO_DEBUG', True) )
 
-ALLOWED_HOSTS = ['safe-everglades-84163.herokuapp.com','127.0.0.1']
+# SECURITY WARNING: don't run with debug turned on in production!
+# DEBUG = True
+DEBUG = bool(os.environ.get('DJANGO_DEBUG', True))
+
+ALLOWED_HOSTS = ['safe-everglades-84163.herokuapp.com', '127.0.0.1']
 # For example:
 # ALLOWED_HOSTS = ['fathomless-scrubland-30645.herokuapp.com','127.0.0.1']
 
@@ -47,7 +49,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'catalog.apps.CatalogConfig',       #proyecto creado por mi
+    'catalog.apps.CatalogConfig',
 ]
 
 MIDDLEWARE = [
@@ -82,7 +84,7 @@ ROOT_URLCONF = 'locallibrary.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['./templates',],
+        'DIRS': ['./templates', ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -100,9 +102,8 @@ WSGI_APPLICATION = 'locallibrary.wsgi.application'
 
 DATABASES = {}
 
-# # Database
-# # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
-# 
+# Database
+# https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.sqlite3',
@@ -111,12 +112,13 @@ DATABASES = {}
 # }
 
 
-#The following environment variable, called DATABASE_URL, has to be defined
-#at the o.s. level: export DATABASE_URL =
+# The following environment variable, called DATABASE_URL, has to be defined
+# at the o.s. level: export DATABASE_URL =
 # ’postgres://alumnodb:alumnodb@localhost:5432/psi’
-#db_from_env = dj_database_url.config(default='postgres://alumnodb:alumnodb@localhost:5432/psi', conn_max_age=500)
+# db_from_env = dj_database_url.config
+# (default='postgres://alumnodb:alumnodb@localhost:5432/psi', conn_max_age=500)
 
-#DATABASES['default'].update(db_from_env)
+# DATABASES['default'].update(db_from_env)
 
 '''
 DATABASES = {
@@ -133,13 +135,14 @@ DATABASES = {
 
 DATABASES = {}
 if os.getenv('SQLITE', False):
-        DATABASES['default'] = {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-        }
+    DATABASES['default'] = {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
 else:
     import dj_database_url
-    DATABASES['default'] = dj_database_url.config(default='postgres://alumnodb:alumnodb@localhost:5432/psi', conn_max_age=500)
+    DATABASES['default'] = dj_database_url.config(
+        default='postgres://alumnodb:alumnodb@localhost:5432/psi', conn_max_age=500)
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -190,16 +193,18 @@ LOGIN_REDIRECT_URL = '/'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # Heroku: Update database configuration from $DATABASE_URL.
-#import dj_database_url
-#db_from_env = dj_database_url.config(conn_max_age=500)
-#DATABASES['default'].update(db_from_env)
+# import dj_database_url
+# db_from_env = dj_database_url.config(conn_max_age=500)
+# DATABASES['default'].update(db_from_env)
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
-# The absolute path to the directory where collectstatic will collect static files for deployment.
-#STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+# The absolute path to the directory where collectstatic
+# will collect static files for deployment.
+# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Simplified static file serving.
 # https://warehouse.python.org/project/whitenoise/
-#STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# STATICFILES_STORAGE =
+# 'whitenoise.storage.CompressedManifestStaticFilesStorage'
