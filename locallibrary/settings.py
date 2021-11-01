@@ -35,7 +35,7 @@ SECRET_KEY = os.environ.get(
 # DEBUG = True
 DEBUG = bool(os.environ.get('DJANGO_DEBUG', True))
 
-ALLOWED_HOSTS = ['safe-everglades-84163.herokuapp.com', '127.0.0.1']
+ALLOWED_HOSTS = ['warm-mesa-84816.herokuapp.com', '127.0.0.1']
 # For example:
 # ALLOWED_HOSTS = ['fathomless-scrubland-30645.herokuapp.com','127.0.0.1']
 
