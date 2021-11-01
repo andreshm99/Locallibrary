@@ -35,7 +35,7 @@ SECRET_KEY = os.environ.get(
 # DEBUG = True
 DEBUG = bool(os.environ.get('DJANGO_DEBUG', True))
 
-ALLOWED_HOSTS = ['sleepy-plateau-98668.herokuapp.com', '127.0.0.1']
+ALLOWED_HOSTS = ['infinite-gorge-40034.herokuapp.com', '127.0.0.1']
 # For example:
 # ALLOWED_HOSTS = ['fathomless-scrubland-30645.herokuapp.com','127.0.0.1']
 
